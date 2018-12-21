@@ -1,0 +1,19 @@
+# This is template hostfile created. Make sure you change the hostname and password.
+# In case you want to use another user aprt from root change the ansible_ssh_user also.
+# Also, Make sure you have host entries in /etc/hosts file or you can also specify IP here
+# ansible_host=xxx.xxx.xxx.xxx
+
+[local]
+localhost ansible_ssh_user=root ansible_ssh_pass<password>
+
+[hdp_mgmt_nodes]
+hdp-mn-0 ansible_ssh_user=root ansible_ssh_pass<password>
+hdp-mn-1 ansible_ssh_user=root ansible_ssh_pass<password>
+
+[hdp_data_nodes]
+hdp-dn-0 ansible_ssh_user=root ansible_ssh_pass<password>
+hdp-dn-1 ansible_ssh_user=root ansible_ssh_pass<password>
+hdp-dn-2 ansible_ssh_user=root ansible_ssh_pass<password>
+
+[hdp_edge_nodes]
+hdp-ed-0 ansible_ssh_user=root ansible_ssh_pass<password>
