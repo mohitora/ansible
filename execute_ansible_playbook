@@ -1,0 +1,3 @@
+# Executing playbooks/structure.yml playbook
+root@localhost ansible]# ansible-playbook playbooks/structure.yml
+
