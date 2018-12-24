@@ -1,5 +1,4 @@
-This repository contain quick reference Ansible playbooks.
-
+## AD-HOC Commands
 #### Simple Ping on all hosts ( using -m option for module)
 `[root@localhost ansible]# ansible all -m ping`
 
@@ -24,3 +23,33 @@ present -> If package exist, dont install.
 
 #### Removing a user 
 `[root@localhost ansible]# ansible local -m user -a "name=mohit state=absent"`
+
+## Ansible Playbook
+#### Executing playbooks/structure.yml playbook
+`root@localhost ansible]# ansible-playbook playbooks/structure.yml`
+
+
+## Gathering facts 
+#### Ad-hoc gathering facts
+`ansible localhost -m setup`
+OR
+`[root@localhost ansible]# ansible localhost -m setup -a 'filter=*ipv4*'`
+
+#### Create a file/dir locally to hold all the facts
+`[root@localhost ansible]# ansible localhost -m setup --tree facts`
+`[root@localhost ansible]# ls -ld facts`
+`drwxr-xr-x. 2 root root 4096 Dec 23 23:41 facts`
+
+#### Parameter passing to ansible script
+`[root@localhost ansible]# ansible-playbook playbooks/parameters.yml`
+
+#### Passing parameters from commandline
+`[root@localhost ansible]# ansible-playbook playbooks/commandline_parameters.yml --extra-vars "myhosts=localhost gather=yes pkg=telnet"`
+
+#### Debuging stmts
+[root@localhost ansible]# ansible-playbook playbooks/debug.yml
+
+#### Notifications
+`[root@localhost ansible]# ansible local -m yum -a "name=httpd state=absent”`
+`[root@localhost ansible]# ansible-playbook playbooks/notify.yml`
+`[root@localhost ansible]# ansible-playbook playbooks/notify.yml`

@@ -1,5 +1,5 @@
 --- # This is structural YAML example to install HTTPD on RHEL
-- hosts: hdp_mgmt_nodes 
+- hosts: hdp_mgmt_nodes localhost
   remote_user: root
   become: yes
   become_method: ssh

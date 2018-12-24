@@ -1,0 +1,20 @@
+--- # Notification and handling events
+- hosts: local
+  remote_user: root
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: install httpd  webserver
+    yum:
+      name: httpd 
+      state: latest
+    notify: 
+    - enable and start
+  handlers:
+  - name: enable and start
+    service: 
+       name: httpd
+       enabled: yes
+       state: restarted

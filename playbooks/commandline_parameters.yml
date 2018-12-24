@@ -1,0 +1,12 @@
+--- # Testing how variables works in Ansible playbooks
+- hosts: '{{ myhosts }}'
+  remote_user: root
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: '{{ gather }}'
+  tasks:
+  - name: Install pakage {{ pkg }} on {{ myhosts }}
+    yum:
+      name: '{{ pkg }}'
+      state: latest
