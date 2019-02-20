@@ -1,0 +1,40 @@
+# - This is the comment in yaml
+Person:
+  name: "mohit"
+  occupation: "Engineer"
+  age: 35
+  gpa: !!str 8.7 # Considered as "8.7"
+  fav_num: 17
+  male: true
+  bithdate: 1983-03-17
+  flaws: null
+  # List of items 
+  hobbies:
+    - hiking
+    - riding
+
+  movies: ["Avenger","Life of pi"]
+
+  # List of object - All below are same
+  friends:
+    - name: "Sam"
+      age: 36
+    - {name: "Sam" , age: 36}
+    -
+      name: "Sam"
+      age: 36
+
+  # Text in one line, but still readable in yaml
+  description: > # By including > the below text will rendered as single line.
+    Hello, this is the message I am
+    typing as random message , as I
+    don't know what else to type. So
+    I have already typed 3 lines of
+    text
+
+  signature: # This will preserve the formatting.
+    Thanks & Regards,
+    Mohit Arora
+    email - mohitora@gmail.com
+
+  id: *name
