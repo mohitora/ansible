@@ -1,0 +1,14 @@
+--- # Demonstration of more details about tasks execution (debug)
+- hosts: localhost
+  remote_user: root
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: "Install httpd "
+    yum:
+      name: httpd
+      state: latest
+      register: result
+  - debug: var=result

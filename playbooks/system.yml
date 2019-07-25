@@ -1,0 +1,46 @@
+---
+  - name: Base system configuration for linux server
+    hosts: 'prod:!rhc101'
+    become: True
+    tasks:
+      - name: Check if user exists
+        user:
+          name: admin
+          state: present
+          uid: 5001
+        tags:
+          - user
+
+      - name: Remove a user dojo
+        user:
+          name: dojo
+          state: absent
+
+      - name: Install tree
+        yum:
+          state: installed
+          name: tree
+      - name: Install ntp
+        yum: 
+          name: ntp
+          state: present
+
+      - name: Start ntp
+        service:
+          name: ntpd
+          state: started
+
+  - name: Configuring app server
+    hosts: 'prod:!rhc102:!rhc103'
+    become: yes
+    tasks:
+      - name: create a deploy user
+        user:
+          name: deploy
+          state: present
+
+      - name: install git
+        yum:
+          name: git
+          state: installed
+...

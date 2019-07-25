@@ -1,0 +1,30 @@
+--- # Installing multiple product at once using loop
+- name: Install and start apache
+  hosts: localhost
+  remote_user: mohit
+  become: root
+
+  tasks:
+   - name: Install epel repo
+     yum: pkg=epel-release state=present
+ 
+   - name: Install python bindings for SeLinux
+     yum: pkg={{item}} state=present
+     with_items:
+     - libselinux-python
+     - libsemanage-python
+    
+   - name: Checkl if SeLinux is running
+     command: getenforce
+     register: sestatus
+     changed_when: false
+
+   - name: Install apache
+     yum: pkg={{item}} state=present
+     with_items:
+     - httpd
+
+   - name: "start apache service"
+     service: name=httpd state=started enabled=yes
+
+... # End of playbook

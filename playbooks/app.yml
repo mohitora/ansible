@@ -1,0 +1,9 @@
+---
+  - name: App service playbook
+    hosts: prod
+    become: true
+    roles:
+      - apache
+      - php
+      - frontend
+...

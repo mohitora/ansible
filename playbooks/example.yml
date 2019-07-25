@@ -1,0 +1,20 @@
+--- # Example playbook to install httpd
+
+- name: Install and Start apache
+  hosts: hdp_data_nodes
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+
+  tasks:
+  - name: Install httpd
+    yum: pkg=httpd state=latest
+ 
+  - name: Write the apache conf file
+    template: src=/srv/httpd.j2 dest=/etc/httpd_test.conf
+ 
+  - name: Start httpd service
+    service: name=httpd state=started 
+
+... # End of playbook

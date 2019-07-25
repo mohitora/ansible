@@ -1,0 +1,23 @@
+---
+# tasks file for systems
+  - name: create admin user
+    user:
+      name: admin
+      uid: 5001
+      shell: /bin/bash
+      home: /home/admin
+      state: present
+
+  - name: remove dojo user
+    user:
+      name: dojo
+      state: absent
+
+  - name: install tree utility
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - tree
+      - ntp
+...

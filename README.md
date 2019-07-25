@@ -9,6 +9,7 @@
 #### Copy a file from localhost to remote host
 `[root@localhost ansible]# ansible hdp_mgmt_nodes -m copy -a "src=test.txt dest=/tmp/test.txt"`
 `[root@localhost ansible]# ansible hdp_mgmt_nodes -a "cat /tmp/test.txt"`
+`[root@localhost ansible]# ansible all -m command -a "uptime"`
 
 #### Install a package
 `[root@localhost ansible]# ansible hdp_data_nodes -m yum -a "name=elinks state=latest"`

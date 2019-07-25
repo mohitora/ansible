@@ -1,0 +1,25 @@
+---
+  - name: Create /opt/app/release directory
+    file:
+      path: /opt/app/release
+      state: directory
+      owner: root
+      group: root
+      recurse: yes
+
+  - name: Install unzip package
+    yum:
+      name: unzip
+      state: present
+
+  - name: Unarchive file under /opt/app/release
+    unarchive:
+      src: 1.6.zip
+      dest: /opt/app/release
+
+  - name: Create symlink 
+    file:
+      src: /opt/app/release
+      dest: /var/www/html/app
+      state: link
+ 
